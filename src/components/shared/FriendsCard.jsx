@@ -16,7 +16,6 @@ export default function FriendsCard({ friend }) {
   };
 
   return (
-    // Wrap the card in a Link pointing to the dynamic route
     <Link href={`/friend/${friend.id}`} className="block">
       <div className="bg-white rounded-xl p-6 flex flex-col items-center justify-center shadow-sm border border-gray-100 transition-transform hover:-translate-y-1 hover:shadow-md cursor-pointer h-full">
       <div className="w-20 h-20 mb-4 rounded-full overflow-hidden bg-gray-200 relative">

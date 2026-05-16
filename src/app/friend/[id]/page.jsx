@@ -2,17 +2,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronLeft } from 'lucide-react';
 import FriendActions from '@/components/shared/FriendActions';
-
-// Import your data (adjust the path to where your data.json lives)
 import friendsData from '@/assets/data.json'; 
 
 export default async function FriendDetail({ params }) {
-  // 1. Get the ID from the URL and find the friend
   const { id } = await params;
   const friendId = parseInt(id, 10);
   const friend = friendsData.find((f) => f.id === friendId);
 
-  // 2. If the user types an ID that doesn't exist, show a 404 page
   if (!friend) {
     notFound();
   }
@@ -20,19 +16,13 @@ export default async function FriendDetail({ params }) {
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-6">
       <div className="max-w-5xl mx-auto">
-        
-        {/* Back Button */}
         <Link href="/" className="inline-flex items-center text-slate-500 hover:text-slate-800 mb-8 transition-colors">
           <ChevronLeft size={20} className="mr-1" />
           Back to Dashboard
         </Link>
 
         <div className="flex flex-col lg:flex-row gap-6">
-          
-          {/* LEFT COLUMN: Profile & Actions */}
           <div className="w-full lg:w-1/3 flex flex-col gap-4">
-            
-            {/* Profile Card */}
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center">
               <div className="w-24 h-24 rounded-full overflow-hidden mb-4 bg-gray-200">
                 <img 
@@ -62,14 +52,10 @@ export default async function FriendDetail({ params }) {
               </p>
             </div>
 
-            {/* Action Buttons */}
             <FriendActions friend={friend} />
           </div>
 
-          {/* RIGHT COLUMN: Stats & Interactions */}
           <div className="w-full lg:w-2/3 flex flex-col gap-6">
-            
-            {/* Top Stats Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center">
                 <span className="text-3xl font-bold text-[#2b4d40] mb-2">62</span>
@@ -85,7 +71,6 @@ export default async function FriendDetail({ params }) {
               </div>
             </div>
 
-            {/* Relationship Goal */}
             <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-sm">
               <div className="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
                 <h2 className="text-lg font-bold text-[#2b4d40]">Relationship Goal</h2>
@@ -98,7 +83,6 @@ export default async function FriendDetail({ params }) {
               </p>
             </div>
 
-            {/* Quick Check-In */}
             <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-sm">
               <h2 className="text-lg font-bold text-[#2b4d40] mb-6">Quick Check-In</h2>
               <FriendActions friend={friend} variant="checkin" />

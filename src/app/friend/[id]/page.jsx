@@ -1,14 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { 
-  Bell, 
-  Archive, 
-  Trash2, 
-  Phone, 
-  MessageSquare, 
-  Video, 
-  ChevronLeft 
-} from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+import FriendActions from '@/components/shared/FriendActions';
 
 // Import your data (adjust the path to where your data.json lives)
 import friendsData from '@/assets/data.json'; 
@@ -70,18 +63,7 @@ export default async function FriendDetail({ params }) {
             </div>
 
             {/* Action Buttons */}
-            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-white border border-gray-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 transition-colors shadow-sm">
-              <Bell size={18} />
-              Snooze 2 Weeks
-            </button>
-            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-white border border-gray-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 transition-colors shadow-sm">
-              <Archive size={18} />
-              Archive
-            </button>
-            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-white border border-gray-200 rounded-xl text-[#ef4444] font-medium hover:bg-red-50 transition-colors shadow-sm">
-              <Trash2 size={18} />
-              Delete
-            </button>
+            <FriendActions friend={friend} />
           </div>
 
           {/* RIGHT COLUMN: Stats & Interactions */}
@@ -119,20 +101,7 @@ export default async function FriendDetail({ params }) {
             {/* Quick Check-In */}
             <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-sm">
               <h2 className="text-lg font-bold text-[#2b4d40] mb-6">Quick Check-In</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button className="flex flex-col items-center justify-center gap-3 py-6 bg-slate-50 border border-gray-100 rounded-xl hover:bg-slate-100 hover:border-slate-200 transition-all group">
-                  <Phone size={24} className="text-slate-700 group-hover:text-[#2b4d40]" />
-                  <span className="text-slate-700 font-medium">Call</span>
-                </button>
-                <button className="flex flex-col items-center justify-center gap-3 py-6 bg-slate-50 border border-gray-100 rounded-xl hover:bg-slate-100 hover:border-slate-200 transition-all group">
-                  <MessageSquare size={24} className="text-slate-700 group-hover:text-[#2b4d40]" />
-                  <span className="text-slate-700 font-medium">Text</span>
-                </button>
-                <button className="flex flex-col items-center justify-center gap-3 py-6 bg-slate-50 border border-gray-100 rounded-xl hover:bg-slate-100 hover:border-slate-200 transition-all group">
-                  <Video size={24} className="text-slate-700 group-hover:text-[#2b4d40]" />
-                  <span className="text-slate-700 font-medium">Video</span>
-                </button>
-              </div>
+              <FriendActions friend={friend} variant="checkin" />
             </div>
 
           </div>

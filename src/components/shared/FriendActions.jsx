@@ -7,6 +7,7 @@ import { useTimeline } from './TimelineProvider';
 export default function FriendActions({ friend, variant = 'actions' }) {
   const { addEvent } = useTimeline();
   const [pendingAction, setPendingAction] = useState(null);
+  const [successAction, setSuccessAction] = useState(null);
 
   const today = new Date().toLocaleDateString('en-US', {
     month: 'long',
@@ -32,7 +33,12 @@ export default function FriendActions({ friend, variant = 'actions' }) {
       date: today,
       note: pendingAction.note,
     });
+    setSuccessAction(pendingAction);
     setPendingAction(null);
+
+    window.setTimeout(() => {
+      setSuccessAction(null);
+    }, 1400);
   };
 
   if (variant === 'checkin') {
@@ -93,19 +99,26 @@ export default function FriendActions({ friend, variant = 'actions' }) {
         Delete
       </button>
 
-      {pendingAction ? (
+      {pendingAction || successAction ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 px-4">
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-lg font-bold text-slate-800">Confirm action</h3>
+                <h3 className="text-lg font-bold text-slate-800">
+                  {successAction ? 'Added to timeline' : 'Confirm action'}
+                </h3>
                 <p className="mt-1 text-sm text-slate-500">
-                  Add a timeline entry for {pendingAction.actionLabel.toLowerCase()} with {friend.name}?
+                  {successAction
+                    ? `${successAction.actionLabel} with ${friend.name} is now on the timeline.`
+                    : `Add a timeline entry for ${pendingAction.actionLabel.toLowerCase()} with ${friend.name}?`}
                 </p>
               </div>
               <button
                 type="button"
-                onClick={() => setPendingAction(null)}
+                onClick={() => {
+                  setPendingAction(null);
+                  setSuccessAction(null);
+                }}
                 className="rounded-full p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
                 aria-label="Close modal"
               >
@@ -114,26 +127,41 @@ export default function FriendActions({ friend, variant = 'actions' }) {
             </div>
 
             <div className="mb-6 rounded-xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
-              <div className="font-medium text-slate-700">{pendingAction.title}</div>
+              <div className="font-medium text-slate-700">{(successAction || pendingAction).title}</div>
               <div>{today}</div>
             </div>
 
-            <div className="flex justify-end gap-3">
-              <button
-                type="button"
-                onClick={() => setPendingAction(null)}
-                className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={confirmAction}
-                className="rounded-lg bg-[#2b4d40] px-4 py-2 text-sm font-medium text-white hover:bg-[#1e382e]"
-              >
-                Add to Timeline
-              </button>
-            </div>
+            {successAction ? (
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPendingAction(null);
+                    setSuccessAction(null);
+                  }}
+                  className="rounded-lg bg-[#2b4d40] px-4 py-2 text-sm font-medium text-white hover:bg-[#1e382e]"
+                >
+                  Done
+                </button>
+              </div>
+            ) : (
+              <div className="flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setPendingAction(null)}
+                  className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={confirmAction}
+                  className="rounded-lg bg-[#2b4d40] px-4 py-2 text-sm font-medium text-white hover:bg-[#1e382e]"
+                >
+                  Add to Timeline
+                </button>
+              </div>
+            )}
           </div>
         </div>
       ) : null}

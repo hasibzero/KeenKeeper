@@ -1,6 +1,7 @@
 'use client';
 
 import { Archive, Bell, MessageSquare, Phone, Trash2, Video } from 'lucide-react';
+import { toast } from 'react-toastify';
 import { useTimeline } from './TimelineProvider';
 
 export default function FriendActions({ friend, variant = 'actions' }) {
@@ -19,10 +20,13 @@ export default function FriendActions({ friend, variant = 'actions' }) {
       date: today,
       note: friend.tags?.[0] || 'Friend action',
     });
+
+    toast.success(`${actionLabel} added to timeline`);
   };
 
   if (variant === 'checkin') {
     return (
+      <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <button
           type="button"
@@ -49,6 +53,7 @@ export default function FriendActions({ friend, variant = 'actions' }) {
           <span className="text-slate-700 font-medium">Video</span>
         </button>
       </div>
+      </>
     );
   }
 

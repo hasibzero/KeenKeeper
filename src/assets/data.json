@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "David Kim",
+    "lastSeen": "62d ago",
+    "tags": ["WORK"],
+    "status": "Almost Due",
+    "avatarUrl": "https://i.pravatar.cc/150?u=david"
+  },
+  {
+    "id": 2,
+    "name": "Emma Wilson",
+    "lastSeen": "62d ago",
+    "tags": ["FAMILY"],
+    "status": "Overdue",
+    "avatarUrl": "https://i.pravatar.cc/150?u=emma"
+  },
+  {
+    "id": 3,
+    "name": "Lisa Nakamura",
+    "lastSeen": "62d ago",
+    "tags": ["WORK"],
+    "status": "Overdue",
+    "avatarUrl": "https://i.pravatar.cc/150?u=lisa"
+  },
+  {
+    "id": 4,
+    "name": "James Wright",
+    "lastSeen": "62d ago",
+    "tags": ["HOBBY", "TRAVEL"],
+    "status": "Overdue",
+    "avatarUrl": "https://i.pravatar.cc/150?u=james"
+  },
+  {
+    "id": 5,
+    "name": "David Kim",
+    "lastSeen": "62d ago",
+    "tags": ["WORK"],
+    "status": "Overdue",
+    "avatarUrl": "https://i.pravatar.cc/150?u=david2"
+  },
+  {
+    "id": 6,
+    "name": "Emma Wilson",
+    "lastSeen": "62d ago",
+    "tags": ["FAMILY"],
+    "status": "On-Track",
+    "avatarUrl": "https://i.pravatar.cc/150?u=emma2"
+  },
+  {
+    "id": 7,
+    "name": "Lisa Nakamura",
+    "lastSeen": "62d ago",
+    "tags": ["WORK"],
+    "status": "On-Track",
+    "avatarUrl": "https://i.pravatar.cc/150?u=lisa2"
+  },
+  {
+    "id": 8,
+    "name": "James Wright",
+    "lastSeen": "62d ago",
+    "tags": ["HOBBY", "TRAVEL"],
+    "status": "Almost Due",
+    "avatarUrl": "https://i.pravatar.cc/150?u=james2"
+  }
+]
